@@ -11,12 +11,12 @@
 
     - name: Install MySql
       apt: name={{ item }} update_cache=yes state=latest
-      loop: [ 'mysql-server', 'python3-pymysql', 'php-mysql' ]
+      loop: [ 'mysql-server', 'python3-pymysql', 'php-mysql', 'php' ]
       tags: [ system ]
 
 
 
-  MySQL Configuration
+#  MySQL Configuration
     - name: Set the root password
       mysql_user:
         name: root
