@@ -20,6 +20,7 @@
     - name: Set the root password
       mysql_user:
         name: root
+        host: "%"
         password: "{{ mysql_root_password }}"
         login_unix_socket: /var/run/mysqld/mysqld.sock
       tags: [ mysql, mysql-root ]
@@ -49,7 +50,7 @@
         login_password: "{{ mysql_root_password }}"
       tags: [ mysql ]
 
-    - name: ensure mysql is configured to bind to the specified address and port
+    - name: ensure mysql is configured to bind to the specified address
       ini_file:
         dest: /etc/mysql/my.cnf
         section: mysqld
@@ -65,7 +66,7 @@
         password: "{{ mysql_password }}"
         priv: "{{ mysql_db }}.*:ALL"
         state: present
-        host: "0.0.0.0"
+        host: "%"
         login_user: root
         login_password: "{{ mysql_root_password }}"
       tags: [ mysql ]
