@@ -70,3 +70,10 @@
         login_user: root
         login_password: "{{ mysql_root_password }}"
       tags: [ mysql ]
+
+  handlers:
+
+    - name: Restart MySql
+      service:
+        name: mysql
+        state: restarted
